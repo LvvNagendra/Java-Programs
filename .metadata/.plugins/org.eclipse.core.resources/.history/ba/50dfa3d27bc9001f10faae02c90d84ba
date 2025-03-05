@@ -1,0 +1,28 @@
+package java8;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class CharacterFrequency {
+    public static void main(String[] args) {
+        String input = "hello world";
+
+        // Create a HashMap to store character frequencies
+        Map<Character, Integer> frequencyMap = new HashMap<>();
+
+        // Loop through each character in the string
+        for (char c : input.toCharArray()) {
+            // Skip spaces or other non-alphabetic characters if needed
+            if (c == ' ') continue;
+
+            // Update the frequency in the map
+            frequencyMap.put(c, frequencyMap.getOrDefault(c, 0) + 1);
+        }
+
+        // Print the frequency of each character
+        System.out.println("Character Frequencies:");
+        for (Map.Entry<Character, Integer> entry : frequencyMap.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
+    }
+}

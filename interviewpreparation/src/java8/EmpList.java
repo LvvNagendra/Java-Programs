@@ -1,0 +1,60 @@
+package java8;
+
+import java.util.*;
+import java.util.stream.Collectors;
+
+public class EmpList {
+	public static void main(String[] args) {
+		List<Employee> list = Arrays.asList(new Employee(1, "nagendra", 12), new Employee(2, "binnu", 5000),
+				new Employee(3, "praj", 60000));
+
+		// Filtering employees with salary > 100
+		List<Employee> filteredList = list.stream().filter(emp -> emp.getSalary() > 100).collect(Collectors.toList());
+		System.out.println("Employees with salary greater than 100: " + filteredList);
+
+		// Finding the employee with the highest salary
+		Optional<Employee> maxSalaryEmployee = list.stream().max(Comparator.comparingInt(Employee::getSalary));
+		maxSalaryEmployee.ifPresent(emp -> System.out.println("Max Salary Employee Name: " + emp.getName()));
+		
+		System.out.println(maxSalaryEmployee);
+		// Finding the second highest salary
+		  Optional<Integer> secondHighestSalary = list.stream()
+	                .map(Employee::getSalary)
+	                .distinct()
+	                .sorted(Comparator.reverseOrder())
+	                .skip(1)
+	                .findFirst();
+
+	        // Output result
+	        System.out.println("Second highest salary: " + secondHighestSalary.orElse(-1));
+	}
+}
+
+class Employee {
+	private int id;
+	private String name;
+	private int salary;
+
+	public Employee(int id, String name, int salary) {
+		this.id = id;
+		this.name = name;
+		this.salary = salary;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public int getSalary() {
+		return salary;
+	}
+
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", name=" + name + ", salary=" + salary + "]";
+	}
+}

@@ -1,0 +1,48 @@
+package java8;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class Employee {
+	public static void main(String[] args) {
+	//List<EmployeeDetails> emp=new ArrayList<>();
+	List<EmployeeDetails>  emp1= Arrays.asList(
+			new EmployeeDetails(1,"nagendra"),
+			new EmployeeDetails(2,"gopi"),
+			new EmployeeDetails(3,"binnu"));
+	
+emp1.stream().forEach(System.out::println);
+//emp1.stream().forEach(System.out::println);
+	
+	}
+
+	@Override
+	public String toString() {
+		return "Employee [getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
+				+ "]";
+	}
+}
+ class EmployeeDetails{
+	 
+	 private int id;
+	 private String name;
+	public EmployeeDetails(int id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+}

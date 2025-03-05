@@ -1,0 +1,116 @@
+package nani;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+
+public class EmpList {
+
+	public static void main(String[] args) {
+		List<Employee> list=new ArrayList<Employee>();
+		
+		Employee emp=new Employee();
+		emp.setId(1);
+		emp.setName("nagendra");
+		emp.setSalary(12);
+		list.add(emp);
+		
+		Employee emp1=new Employee();
+		emp1.setId(2);
+		emp1.setName("binnu");
+		emp1.setSalary(5000);
+		list.add(emp1);
+		
+		Employee emp2=new Employee();
+		emp2.setId(3);
+		emp2.setName("praj");
+		emp2.setSalary(60000);
+		list.add(emp2);
+		List<Employee>list2= new ArrayList<Employee>();
+		
+	for(Employee emph:list) {
+		if(emph.getSalary()>100) {
+			list2.add(emph);
+			
+		}
+	}
+		
+	System.out.println("salary gaterthen 100"+ list2);
+		
+		//System.out.println(list.toString());
+		Employee MaxSalaryName=null;
+		int maxsalary=Integer.MIN_VALUE;
+		for(Employee empL:list) {
+			if(empL.getSalary()>maxsalary) {
+				maxsalary=empL.getSalary();
+				MaxSalaryName=empL;
+			}
+			
+		}
+		if(MaxSalaryName!=null) {
+			System.out.println("maximum salary employee Name="+MaxSalaryName.getName());
+		}
+		
+	//	Employee secondMaxSalaryName=null;
+		int maxSalary1=Integer.MIN_VALUE;
+		int secondMaxSalary=Integer.MIN_VALUE;
+		
+		for(Employee empL1:list) {
+			
+			int currentSalary=empL1.getSalary();
+			if(currentSalary > maxSalary1) {
+				secondMaxSalary=maxSalary1;
+				maxSalary1=currentSalary;}
+			 if (currentSalary < maxsalary && currentSalary > secondMaxSalary) {
+					secondMaxSalary=currentSalary;
+				}
+				
+			}
+		System.out.println("second hightest salary=" + secondMaxSalary );
+		
+		
+		
+		/*
+		 * if(secondMaxSalary==Integer.MIN_VALUE) {
+		 * System.out.println("second salary is not found"); }else {
+		 * System.out.println("second hightest salary=" + secondMaxSalary ); }
+		 */
+		
+
+	}
+
+}
+class Employee{
+	private int id;
+	private String name;
+	private int salary;
+	public int  getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getSalary() {
+		return salary;
+	}
+	public void setSalary(int salary) {
+		this.salary = salary;
+	}
+	
+	public Employee() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", name=" + name + ", salary=" + salary + "]";
+	}
+	
+}

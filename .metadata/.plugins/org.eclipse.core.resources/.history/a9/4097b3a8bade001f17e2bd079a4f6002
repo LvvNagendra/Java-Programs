@@ -1,0 +1,84 @@
+package mostaskingquestions;
+
+
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Employeemax {
+    public static void main(String[] args) {
+        List<EmployeeDetails> oneList = new ArrayList<>();
+
+        EmployeeDetails emp = new EmployeeDetails("John", 50000);
+        oneList.add(emp);
+
+        EmployeeDetails emp1 = new EmployeeDetails("Jane", 60000);
+        oneList.add(emp1);
+
+        EmployeeDetails emp2 = new EmployeeDetails("David", 45000);
+        oneList.add(emp2);
+
+        // Variables to store max and second max salary employees
+        EmployeeDetails maxSalaryEmployee = null;
+        EmployeeDetails secondMaxSalaryEmployee = null;
+
+        int maxSalary = Integer.MIN_VALUE;
+        int secondMaxSalary = Integer.MIN_VALUE;
+
+        for (EmployeeDetails emps : oneList) {
+            int currentSalary = emps.getSalary();
+
+            if (currentSalary > maxSalary) {
+                // Update second highest salary before updating max salary
+                secondMaxSalary = maxSalary;
+                secondMaxSalaryEmployee = maxSalaryEmployee;
+
+                maxSalary = currentSalary;
+                maxSalaryEmployee = emps;
+            } else if (currentSalary > secondMaxSalary && currentSalary < maxSalary) {
+                secondMaxSalary = currentSalary;
+                secondMaxSalaryEmployee = emps;
+            }
+        }
+
+        // Print highest salary employee
+        if (maxSalaryEmployee != null) {
+            System.out.println("Employee with the highest salary:");
+            System.out.println("Name: " + maxSalaryEmployee.getName() + ", Salary: " + maxSalaryEmployee.getSalary());
+        } else {
+            System.out.println("No employees found.");
+        }
+
+        // Print second highest salary employee
+        if (secondMaxSalaryEmployee != null) {
+            System.out.println("Employee with the second highest salary:");
+            System.out.println("Name: " + secondMaxSalaryEmployee.getName() + ", Salary: " + secondMaxSalaryEmployee.getSalary());
+        } else {
+            System.out.println("No second highest salary found.");
+        }
+    }
+}
+
+// EmployeeDetails Class
+class EmployeeDetails {
+    private String name;
+    private int salary;
+
+    public EmployeeDetails(String name, int salary) {
+        this.name = name;
+        this.salary = salary;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getSalary() {
+        return salary;
+    }
+
+    @Override
+    public String toString() {
+        return "EmployeeDetails [name=" + name + ", salary=" + salary + "]";
+    }
+}
